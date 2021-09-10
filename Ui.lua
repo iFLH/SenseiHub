@@ -2,7 +2,6 @@ if game.CoreGui:FindFirstChild("FluxLib") then
    game.CoreGui:FindFirstChild("FluxLib"):Destroy()
  end 
 
-
 local Flux = {RainbowColorValue = 0, HueSelectionPosition = 0}
 local PresetColor = Color3.fromRGB(66, 134, 255)
 local UserInputService = game:GetService("UserInputService")
@@ -2302,10 +2301,10 @@ function Flux:Window(text, bottom,mainclr,toclose)
 			Container.CanvasSize = UDim2.new(0, 0, 0, ContainerLayout.AbsoluteContentSize.Y)
 		end
 		function ContainerContent:Label(text)
+        local labelfunc = {}
 			local Label = Instance.new("TextButton")
 			local LabelCorner = Instance.new("UICorner")
 			local Title = Instance.new("TextLabel")
-
 			Label.Name = "Label"
 			Label.Parent = Container
 			Label.BackgroundColor3 = Color3.fromRGB(64, 68, 75)
@@ -2336,7 +2335,16 @@ function Flux:Window(text, bottom,mainclr,toclose)
 			Title.TextXAlignment = Enum.TextXAlignment.Left
 			
 			Container.CanvasSize = UDim2.new(0, 0, 0, ContainerLayout.AbsoluteContentSize.Y)
+    function labelfunc:Refresh(tochange)
+           Title.Text = tochange
+        end
+ 
+        return labelfunc
 		end
+
+
+
+
 		function ContainerContent:Textbox(text,desc,disapper,callback)
 			if desc == "" then
 				desc = "There is no description for this textbox."
